@@ -125,16 +125,13 @@ def main():
     for cur_file in os.listdir(args.i):
         file_ending = cur_file.split('.')[-1]
         if file_ending == 'fa' or file_ending == 'fasta':
-            file_fp = os.path.join(args.i, cur_file)
-            file_list.append(file_fp)
-    
-     # List of input fasta files
+            file_list.append(cur_file)
 
     for cur_file in file_list:
         # Loop which iterates over files
         cur_fp = os.path.join(args.i, cur_file)
         # automagically generates output file name
-        out_handle = cur_file.split('.')[0] + '_perfect_subseq_cnts.csv'
+        out_handle = os.path.basename(cur_file).split('.')[0] + '_perfect_subseq_cnts.csv'
         # prints status since this script can take a while
         sys.stdout.write('Working on file: ' + cur_file + '\n')
         sys.stdout.flush()
@@ -144,7 +141,6 @@ def main():
                 subseq_cnts = perfect_matcher(cur_fp, args.n)
                 # Turns counter to tup list so out objects are the same
                 subcounts = [(i[0],i[1]) for i in subseq_cnts.iteritems()]
-
             else:
                 subcounts = counter_to_tuplist(perfect_matcher(cur_fp, args.n))
 
