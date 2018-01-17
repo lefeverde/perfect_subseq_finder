@@ -45,7 +45,7 @@ def perfect_matcher(cur_fasta, subseq_len):
     or a sequence as a string as input. The latter is done for
     testing purposes. If the input (cur_fasta) is not a file, it is assumed
     a string.
-    TODO fix error with not existant file as input
+    TODO fix error with not existent file as input
     '''
 
     if os.path.isfile(cur_fasta):
@@ -99,7 +99,6 @@ def counter_to_tuplist(counter_object):
 
 
 def main():
-
 
     file_list = os.listdir(args.i)
     for cur_file in file_list:
